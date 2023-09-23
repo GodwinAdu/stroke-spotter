@@ -38,18 +38,18 @@ const AboutSectionOne = () => {
               >
                 <div className="mx-[-12px] flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Counseling " />
-                    <List text="Children's Ministry" />
-                    <List text="Men's and Women's Ministries" />
-                    <List text=" Bible Study" />
+                    <List text="Education " />
+                    <List text="Counseling" />
+                    <List text="I will add some descriptions" />
+                    
                   </div>
 
-                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
+                  {/* <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
                     <List text="Worship Services" />
                     <List text="Prayer Meetings" />
                     <List text="Celebrations and Special Event" />
                     <List text="Fellowship Events" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
