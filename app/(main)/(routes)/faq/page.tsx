@@ -12,7 +12,7 @@ interface FaqProps{
 }
 
 const FAQPage = async () => {
-  const faqData:FaqProps[] = await fetchFaq() || [];
+  const faqData:FaqProps[] = await fetchFaq() ;
  console.log("main", faqData)
   return (
     <>

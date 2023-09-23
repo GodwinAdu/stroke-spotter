@@ -4,11 +4,11 @@ import Image from "next/image";
 import { Separator } from "../ui/separator";
 
 export async function SingleEvent() {
-  const eventsData = (await fetchEvent()) || [];
+  const eventsData = await fetchEvent();
 
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto ">
-      {eventsData.map((event) => (
+      {eventsData?.map((event) => (
         <div key={event.id} className="dark:bg-dark bg-white p-4 rounded-lg shadow-md">
           <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
             <Image
