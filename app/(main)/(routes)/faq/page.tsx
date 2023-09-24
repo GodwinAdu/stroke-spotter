@@ -11,8 +11,9 @@ interface FaqProps{
 
 }
 
+export const dynamic = 'force-dynamic'
 const FAQPage = async () => {
-  const faqData:FaqProps[] = await fetchFaq() ;
+  const faqData:FaqProps[] = await fetchFaq() || [];
  console.log("main", faqData)
   return (
     <>

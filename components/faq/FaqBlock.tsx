@@ -25,12 +25,12 @@ const FaqBlock: React.FC<ComponentProps> = ({faqData}) => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="max-w-3xl mx-auto">
-        {questions.length === 0 ? (
+        {questions?.length === 0 ? (
           <div className="text-center py-6 text-gray-600">
             No questions available at the moment.
           </div>
         ) : (
-          questions.map(({ _id, question, answer }) => (
+          questions?.map(({ _id, question, answer }) => (
             <div key={_id} className="mb-6 relative">
               <button
                 className="w-full text-left p-4 rounded-lg bg-white shadow-md font-semibold"
