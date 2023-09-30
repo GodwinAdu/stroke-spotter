@@ -30,7 +30,6 @@ interface NavbarProps {
 const Navbar = ({ user }: NavbarProps | null) => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const path = usePathname();
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
