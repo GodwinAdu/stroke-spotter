@@ -5,7 +5,6 @@ import menuData from "./menuData";
 import Image from "next/image";
 import { ModeToggler } from "@/components/themes/ModeToggler";
 
-import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 
 interface NavbarProps {
@@ -28,7 +27,7 @@ interface NavbarProps {
   username: string;
   writer: boolean;
 }
-const Navbar = ({ user }: NavbarProps) => {
+const Navbar = ({ user }: NavbarProps | null) => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const path = usePathname();
