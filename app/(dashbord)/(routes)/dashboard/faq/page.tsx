@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic'
 
 const FaqPage = async () => {
     const faqData: FaqProps[] = await fetchFaq() || []
-     console.log(faqData)
+     
   return (
     <>
       <Breadcrumb pageName="FAQ Edit" />

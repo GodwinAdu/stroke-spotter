@@ -1,46 +1,64 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-    name: {
+
+const UserSchema = new mongoose.Schema({
+    id: {
         type: String,
         required: true,
-        trim: true,
-    },
-    profileImage: {
-        type: String, // assuming the image is stored as a URL or file path
-        default: null
-    },
-    email: {
+      },
+      username: {
         type: String,
-        required: true,
         unique: true,
-        trim: true,
-        lowercase: true,
-        match: [/.+@.+\..+/, 'Please use a valid email address']
-    },
-    role: {
+        required: true,
+      },
+      name: {
         type: String,
         required: true,
-        enum: ['admin', 'user', 'editor', 'etc'], // you can update the roles accordingly
+      },
+      image: String,
+      bio: String,
+      profession:String,
+      country:String,
+      sex:String,
+      phone: String,
+      memberId: String,
+      onboarded: {
+        type: Boolean,
+        default: false,
+      },
+    researchWriter:{
+        type:Boolean,
+        default: false
     },
-    duties: {
-        type: [String], // using an array to allow multiple duties
+    trainee:{
+        type:Boolean,
+        default: false
     },
-    profession: {
-        type: String,
-        required: true,
+    writer:{
+        type:Boolean,
+        default: true
     },
-    country: {
-        type: String,
-        required: true,
+    speechWriter:{
+        type:Boolean,
+        default: false
     },
+    duesPay:{
+        type:Boolean,
+        default: false
+    },
+   
     memberType: {
         type: String,
         enum: ['gold', 'silver', 'bronze', 'basic'], // example membership types, modify as needed
         default: 'basic',
-    }
+    },
+     admin: {
+        type: Boolean,
+        default:false
+    },
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
 
-module.exports = User;
+export default User;
+

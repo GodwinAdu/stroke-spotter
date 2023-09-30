@@ -25,10 +25,10 @@ export const menuDatas:MenuItem[] = [
       label: 'News',
       icon: '<svg>...</svg>', // SVG data for the Calendar icon
       subItems: [
-        { label: 'Blogs', path: '/blog' },
-        { label: 'News', path: '/news' },
-        { label: 'Newsletters', path: '/newsletters' },
-        { label: 'webinars', path: '/webinars' },
+        { label: 'Blogs', path: '/dashboard/blog' },
+        { label: 'News', path: '/dashboard/news' },
+        { label: 'Newsletters', path: '/dashboard/newsletters' },
+        { label: 'webinars', path: '/dashboard/webinars' },
       ]
     },
     {
@@ -37,26 +37,26 @@ export const menuDatas:MenuItem[] = [
       subItems: [
         { label: 'What we do', path: '/what-we-do' },
         { label: 'Home care', path: '/home-care' },
-        { label: 'Taining services', path: '/training' },
-        { label: 'Report and Research', path: '/report-research' },
+        { label: 'Taining services', path: '/dashboard/training' },
+        { label: 'Report and Research', path: '/dashboard/report-research' },
       ]
     },
     {
       label: 'Stories',
       icon: '<svg>...</svg>', // SVG data for the Calendar icon
       subItems: [
-        { label: 'Stroke Survivor', path: '/storke-survivor' },
-        { label: 'Stroke Victim', path: '/stroke-victim' },
-        { label: 'Interviews', path: '/interview' },
-        { label: 'Nurses Stories', path: '/Nurses-stories' },
+        { label: 'Stroke Survivor', path: '/dashboard/storke-survivor' },
+        { label: 'Stroke Victim', path: '/dashboard/stroke-victim' },
+        { label: 'Interviews', path: '/dashboard/interview' },
+        { label: 'Nurses Stories', path: '/dashboard/Nurses-stories' },
       ]
     },
     {
       label: 'Memberships',
       icon: '<svg>...</svg>', // SVG data for the Calendar icon
       subItems: [
-        { label: 'Our members', path: '/members' },
-        { label: 'Membership', path: '/membership' },
+        { label: 'Our members', path: '/dashboard/members' },
+        { label: 'Membership', path: '/dashboard/membership' },
       ]
     },
     {

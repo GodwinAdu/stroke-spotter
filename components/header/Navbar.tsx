@@ -1,14 +1,37 @@
-"use client"
-import  Link  from "next/link";
+"use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import menuData from "./menuData";
 import Image from "next/image";
 import { ModeToggler } from "@/components/themes/ModeToggler";
 
+import { usePathname } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 
-const Navbar = () => {
+interface NavbarProps {
+  _id: string;
+  id: string;
+  admin: boolean;
+  bio: string;
+  country: string;
+  duesPay: boolean;
+  image: string;
+  memberId: string;
+  memberType: string;
+  name: string;
+  onboarded: boolean;
+  phone: string;
+  profession: string;
+  researchWriter: boolean;
+  speechWriter: boolean;
+  trainee: boolean;
+  username: string;
+  writer: boolean;
+}
+const Navbar = ({ user }: NavbarProps) => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const path = usePathname();
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
@@ -25,6 +48,8 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
   });
+
+  console.log("current user", user);
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
@@ -101,7 +126,7 @@ const Navbar = () => {
                         {menuItem.path ? (
                           <Link
                             onClick={() => setNavbarOpen(false)}
-                            href ={menuItem.path}
+                            href={menuItem.path}
                             className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                           >
                             {menuItem.title}
@@ -130,7 +155,7 @@ const Navbar = () => {
                               {menuItem?.submenu.map((submenuItem) => (
                                 <Link
                                   onClick={() => setNavbarOpen(false)}
-                                  href ={submenuItem.path}
+                                  href={submenuItem.path}
                                   key={submenuItem.id}
                                   className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
                                 >
@@ -146,16 +171,38 @@ const Navbar = () => {
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0 gap-4">
-               
-                <Link
-                  href ="/donate"
-                  className="ease-in-up hidden rounded-md bg-indigo/50 dark:bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
-                >
-                  Donate
-                </Link>
+                {user ? (
+                  <>
+                    {!user?.admin ? (
+                      <Link href={`/profile/${user?.id}`}>
+                        <Image
+                          src={user?.image}
+                          alt={user?.username}
+                          width={32}
+                          height={32}
+                          className="rounded-full shadow-lg"
+                        />
+                      </Link>
+                    ) : (
+                      <Link href={`/dashboard`}>
+                        <Image
+                          src={user?.image}
+                          alt={user?.username}
+                          width={32}
+                          height={32}
+                          className="rounded-full shadow-lg"
+                        />
+                      </Link>
+                    )}
+                  </>
+                ) : (
+                  <p>Button</p>
+                )}
+
                 <div>
                   <ModeToggler />
                 </div>
+                <UserButton />
               </div>
             </div>
           </div>

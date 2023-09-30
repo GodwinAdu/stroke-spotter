@@ -20,3 +20,54 @@ export function formatDate(dateString: string) {
 
   return `${year}-${month}-${day}`;
 }
+
+// generate membership ID
+export async function generateMembershipId() {
+  const prefix = "spot_";
+  const numDigits = 10;
+  let randomDigits = "";
+
+  for (let i = 0; i < numDigits; i++) {
+    const randomDigit = Math.floor(Math.random() * 15);
+    randomDigits += randomDigit.toString();
+  }
+  const memberId = prefix + randomDigits;
+
+  return memberId;
+}
+
+// calculate time period for post
+
+  export function calculateTimePeriod(createdDate:string) {
+    const now = new Date();
+    const createdDateTime = new Date(createdDate); // Convert the string to a Date object
+
+    const timeDifference = now.getTime() - createdDateTime.getTime(); // Get the time difference in milliseconds
+
+    // Define time intervals in milliseconds
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const day = 24 * hour;
+    const month = 30 * day;
+
+    if (timeDifference < minute) {
+      return Math.floor(timeDifference / 1000) + "s ago";
+    } else if (timeDifference < hour) {
+      return Math.floor(timeDifference / minute) + "m ago";
+    } else if (timeDifference < day) {
+      return Math.floor(timeDifference / hour) + "h ago";
+    } else if (timeDifference < month) {
+      return Math.floor(timeDifference / day) + "d ago";
+    } else {
+      // Calculate months and years separately
+      const months = Math.floor(timeDifference / month);
+      const years = Math.floor(months / 12);
+      if (years >= 1) {
+        return years + "y ago";
+      } else {
+        return months + "mo ago";
+      }
+    }
+    
+  }
+
