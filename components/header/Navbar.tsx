@@ -27,7 +27,7 @@ interface NavbarProps {
   username: string;
   writer: boolean;
 }
-const Navbar = ({ user }: NavbarProps | null) => {
+const Navbar = ({ user }: NavbarProps) => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -150,7 +150,7 @@ const Navbar = ({ user }: NavbarProps | null) => {
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {menuItem?.submenu.map((submenuItem) => (
+                              {menuItem?.submenu?.map((submenuItem) => (
                                 <Link
                                   onClick={() => setNavbarOpen(false)}
                                   href={submenuItem.path}
@@ -200,7 +200,6 @@ const Navbar = ({ user }: NavbarProps | null) => {
                 <div>
                   <ModeToggler />
                 </div>
-                <UserButton />
               </div>
             </div>
           </div>

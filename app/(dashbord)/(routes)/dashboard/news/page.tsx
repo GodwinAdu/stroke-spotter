@@ -16,7 +16,6 @@ const NewsPage = async ({
 const result = await fetchNews(1,6);
 
 
-  console.log(result)
 
   
 

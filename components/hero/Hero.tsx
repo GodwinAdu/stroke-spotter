@@ -40,15 +40,15 @@ export default function Hero() {
                     className="btn text-white bg-indigo/50 dark:bg-primary dark:text-dark py-3 px-4 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
                     href="/about-us"
                   >
-                    About Us
+                    Donate Now
                   </Link>
                 </div>
                 <div className="">
                   <Link
                     className="btn text-white bg-dark py-3 px-4 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                    href="/join-us"
+                    href="/sign-in"
                   >
-                    Join Us
+                    Sign In
                   </Link>
                 </div>
               </div>

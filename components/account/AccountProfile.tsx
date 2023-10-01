@@ -135,7 +135,7 @@ const AccountProfile = ({ user }: Props) => {
   return (
     <Form {...form}>
       <form
-        className='flex flex-col justify-start gap-10'
+        className='flex flex-col justify-start gap-4'
         onSubmit={form.handleSubmit(onSubmit)}
       >
        
@@ -182,7 +182,7 @@ const AccountProfile = ({ user }: Props) => {
             name='name'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Name
                 </FormLabel>
                 <FormControl>
@@ -202,7 +202,7 @@ const AccountProfile = ({ user }: Props) => {
             name='email'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Email
                 </FormLabel>
                 <FormControl>
@@ -221,7 +221,7 @@ const AccountProfile = ({ user }: Props) => {
             name='phone'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Phone
                 </FormLabel>
                 <FormControl>
@@ -241,7 +241,7 @@ const AccountProfile = ({ user }: Props) => {
             name='username'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Username
                 </FormLabel>
                 <FormControl>
@@ -260,7 +260,7 @@ const AccountProfile = ({ user }: Props) => {
             name='profession'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Profession
                 </FormLabel>
                 <FormControl>
@@ -279,7 +279,7 @@ const AccountProfile = ({ user }: Props) => {
             name='country'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Country
                 </FormLabel>
                 <FormControl>
@@ -298,14 +298,14 @@ const AccountProfile = ({ user }: Props) => {
           name="gender"
           render={({ field }) => (
             <FormItem className='flex w-full flex-col gap-1'>
-              <FormLabel className='text-base-semibold text-light-2'>Gender</FormLabel>
+              <FormLabel className='text-base-semibold text-white'>Gender</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl className='account-form_input no-focus'>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a verified email to display" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className="text-white bg-black">
                   <SelectItem value="male">Male</SelectItem>
                   <SelectItem value="female">Female</SelectItem>
                   <SelectItem value="preffered not to say">Preffered not to say</SelectItem>
@@ -321,12 +321,12 @@ const AccountProfile = ({ user }: Props) => {
             name='bio'
             render={({ field }) => (
               <FormItem className='flex w-full flex-col gap-1'>
-                <FormLabel className='text-base-semibold text-light-2'>
+                <FormLabel className='text-base-semibold text-white'>
                   Bio
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    rows={10}
+                    rows={5}
                     className='account-form_input no-focus'
                     {...field}
                   />
@@ -336,8 +336,8 @@ const AccountProfile = ({ user }: Props) => {
             )}
           />
 
-          <Button type='submit' className='bg-primary-500'>
-            Register
+          <Button type='submit' className='bg-primary '>
+            continue !!!
           </Button>
        
 

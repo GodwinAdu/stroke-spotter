@@ -149,7 +149,7 @@ body,
 
 /* Account Profile  */
 .account-form_image-label {
-  @apply flex h-24 w-24 items-center justify-center rounded-full bg-dark !important;
+  @apply flex h-24 w-24 items-center justify-center rounded-full bg-primary !important;
 }
 
 .account-form_image-input {

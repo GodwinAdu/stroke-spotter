@@ -29,12 +29,11 @@ const Page = async () => {
     
 
     return (
-        <main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
-            <h1 className="head-text">onboardidng</h1>
-            <p className="mt-3 text-base-regular text-light-2">
-                Complete your profile now to use Thread
+        <main className="mx-auto flex w-[100%] md:max-w-3xl flex-col justify-start bg-dark">
+            <p className="mt-3 text-base-regular text-white text-center">
+                Complete your profile now to continue
             </p>
-            <section className="mt-9 p-10 bg-dark-2">
+            <section className="p-10 ">
                 <AccountProfile user={userData}  />
             </section>
         </main>
