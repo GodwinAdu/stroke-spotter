@@ -9,28 +9,32 @@ const page = () => {
         pageName="Overview"
         description="We would love to hear from you! If you have any questions, feedback, or simply want to connect with us,"
       />
-      <div className="p-5">
+      <div className="p-0">
         <div className="grid grid-cols-1 md:grid-cols-2">
 
         <BackgroundSection 
-        imageUrl="/test.jpeg" 
-        description="This is a description for image 1."
-        buttonText="Click Me 1" 
+        imageUrl="/overview/why-join-us.jpg" 
+        description="Why Join Us"
+        buttonText="Read More" 
+        link={`/why-join-us`}
       />
         <BackgroundSection 
-        imageUrl="/test.jpeg" 
-        description="This is a description for image 2."
-        buttonText="Click Me 2" 
+        imageUrl="/overview/join-us.jpg" 
+        description="Join Us Now"
+        buttonText="Read More"
+        link={`/join-us`} 
       />
         <BackgroundSection 
-        imageUrl="/test.jpeg" 
-        description="This is a description for image 3."
-        buttonText="Click Me 3" 
+        imageUrl="/overview/our-member.jpg" 
+        description="Our Patrons and Members"
+        buttonText="view More" 
+        link={`/our-members`}
       />
         <BackgroundSection 
-        imageUrl="/test.jpeg" 
-        description="This is a description for image 4."
-        buttonText="Click Me 4" 
+        imageUrl="/overview/membership.jpg" 
+        description="SSFF Membership"
+        buttonText="Read More" 
+        link={`/ssf-membership`}
       />
         </div>
       </div>

@@ -1,60 +1,50 @@
+
+import { formatDate } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
-import { Separator } from "../ui/separator";
-import { MessageSquare, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
 
-
-interface BlogCardProps {
-  date: string;
-  image: string;
-  CardTitle: string;
-  CardDescription: string;
-  link: string;
+interface BlogProps {
+    title:string;
+    image:string;
+    tags:string;
+    shortDescription:string;
+    _id:string;
 }
 
-const BlogCard = ({
-  image,
-  date,
-  CardTitle,
-  CardDescription,
-  link,
-}: BlogCardProps) => {
+const SingleBlog = ({ blog }: { blog:BlogProps }) => {
+  const { title, image,tags,shortDescription ,_id} = blog;
   return (
     <>
-      <div className="w-full px-4">
-        <div className="mx-auto mb-10 max-w-[370px]">
-          <div className="mb-8 overflow-hidden rounded">
-            <img src={image} alt="" className="w-full" />
-          </div>
-          <div>
-            <div className="flex justify-between items-center">
-              {date && (
-                <span className="inline-block px-4 py-1 mb-5 text-xs font-semibold leading-loose text-center text-white rounded bg-indigo/50">
-                  {date}
-                </span>
-              )}
-              <div className="flex gap-5 items-center">
-                <button className="flex gap-1"><ThumbsUp size={16} strokeWidth={1.5} /> 1</button>
-                {/* <p><ThumbsDown size={16} strokeWidth={1.5} /></p> */}
-                <button className="flex gap-1"><MessageSquare size={16} strokeWidth={1.5} /> 2</button>
-                <button className="flex gap-1"><Share2 size={16} strokeWidth={1.5} /> 4</button>
-              </div>
-            </div>
-            <Separator />
-            <h3 className="pt-2">
-              <Link
-                href={link}
-                className="inline-block mb-2 text-xl font-semibold text-dark hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl"
-              >
-                {CardTitle}
-              </Link>
-            </h3>
-            <p className="text-base text-body-color pb-2">{CardDescription}</p>
-            <Separator />
-            <Link href={link}>
-              <button className=" font-bold text-indigo/50 hover:underline pt-2">
-                Read More
-              </button>
+      <div
+        className="wow fadeInUp relative overflow-hidden rounded-md bg-white shadow-one dark:bg-dark"
+        data-wow-delay=".1s"
+      >
+        <Link href="/" className="relative block h-[220px] w-full">
+          <span className="absolute top-6 right-6 z-20 inline-flex items-center justify-center rounded-full bg-primary py-2 px-4 text-sm font-semibold capitalize text-white">
+            {tags}
+          </span>
+          <Image src={image} alt="image" fill />
+        </Link>
+        <div className="p-6 sm:p-8 md:py-8 md:px-6 lg:p-8 xl:py-8 xl:px-5 2xl:p-8">
+          <h3>
+            <Link
+              href={`/blogs/${_id}`}
+              className="mb-4 block text-xl font-bold text-black hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl"
+            >
+              {title}
             </Link>
+          </h3>
+          <p className="mb-6 border-b border-body-color border-opacity-10 pb-6 text-base font-medium text-body-color dark:border-white dark:border-opacity-10">
+            {shortDescription}
+          </p>
+          <div className="flex items-center">
+            
+            <div className="inline-block">
+              <Link href={`/blogs/${_id}`} className="mb-1 text-md font-medium text-dark dark:text-white">
+                Read More
+              </Link>
+              
+            </div>
           </div>
         </div>
       </div>
@@ -62,4 +52,4 @@ const BlogCard = ({
   );
 };
 
-export default BlogCard;
+export default SingleBlog;

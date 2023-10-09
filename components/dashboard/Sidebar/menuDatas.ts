@@ -35,9 +35,8 @@ export const menuDatas:MenuItem[] = [
       label: 'Service',
       icon: '<svg>...</svg>', // SVG data for the Calendar icon
       subItems: [
-        { label: 'What we do', path: '/what-we-do' },
-        { label: 'Home care', path: '/home-care' },
         { label: 'Taining services', path: '/dashboard/training' },
+        { label: 'Our Speeches', path: '/dashboard/speech' },
         { label: 'Report and Research', path: '/dashboard/report-research' },
       ]
     },
@@ -48,15 +47,7 @@ export const menuDatas:MenuItem[] = [
         { label: 'Stroke Survivor', path: '/dashboard/storke-survivor' },
         { label: 'Stroke Victim', path: '/dashboard/stroke-victim' },
         { label: 'Interviews', path: '/dashboard/interview' },
-        { label: 'Nurses Stories', path: '/dashboard/Nurses-stories' },
-      ]
-    },
-    {
-      label: 'Memberships',
-      icon: '<svg>...</svg>', // SVG data for the Calendar icon
-      subItems: [
-        { label: 'Our members', path: '/dashboard/members' },
-        { label: 'Membership', path: '/dashboard/membership' },
+        { label: 'Nurses Stories', path: '/dashboard/nurses-stories' },
       ]
     },
     {

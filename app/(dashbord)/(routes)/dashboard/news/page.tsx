@@ -1,9 +1,9 @@
 import Breadcrumb from "@/components/dashboard/Breadcrumbs/Breadcrumb";
 import Link from "next/link";
 import Pagination from "@/components/common/Pagination";
-import SingleBlog from "@/components/blog/SingleBlog";
 
 import { fetchNews } from "@/lib/actions/news.actions";
+import SingleNews from "@/components/news/SingleNews";
 
 // unsave browser cache
 export const dynamic = 'force-dynamic';
@@ -35,13 +35,14 @@ const result = await fetchNews(1,6);
      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {result?.serializeNews?.map((news) =>(
-            <SingleBlog
+            <SingleNews
              key={news._id}
              id={news._id}
              image={news.image}
              title={news.title}
              description={news.shortDescription}
              link={`/dashboard/news/${news._id}`}
+             approved={news.approved}
              
              />
           ))}

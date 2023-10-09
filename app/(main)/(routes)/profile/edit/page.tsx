@@ -20,7 +20,9 @@ async function Page() {
     name: userInfo ? userInfo?.name : user.firstName ?? "",
     bio: userInfo ? userInfo?.bio : "",
     image: userInfo ? userInfo?.image : user.imageUrl,
-    email: userInfo? userInfo?.email: user.emailAddresses[0].emailAddress ?? "",
+    email: userInfo
+      ? userInfo?.email
+      : user.emailAddresses[0].emailAddress ?? "",
     phone: userInfo ? userInfo?.phone : user.phoneNumbers[0].phoneNumber ?? "",
     country: userInfo ? userInfo.country : "",
     profession: userInfo ? userInfo.profession : "",
@@ -30,9 +32,9 @@ async function Page() {
   return (
     <>
       <Breadcrumb pageName="Edit profile" />
-      <p className="mt-3 text-base-regular text-white">Make any changes</p>
 
-      <section className="mt-12 px-4 py-10">
+      <section className="mt-12 px-4 py-10 max-w-4xl mx-auto">
+        <p className="mt-3 mb-5 text-base-regular text-white">Make any changes to your profile</p>
         <AccountProfile user={userData} />
       </section>
     </>

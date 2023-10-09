@@ -42,7 +42,7 @@ const result = await fetchBlog(1,6);
              title={blog.title}
              description={blog.shortDescription}
              link={`/dashboard/blog/${blog._id}`}
-             
+             approved={blog.approved}
              />
           ))}
       </div>

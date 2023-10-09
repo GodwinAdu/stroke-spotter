@@ -82,7 +82,7 @@ export async function fetchNews(pageNumber = 1, pageSize = 6) {
 
     if (!newsList) {
       console.log('No newsList found with the given id.');
-      return;
+      return { serializeBlogs: [], isNext: false };
     }
     const serializeNews = newsList.map(news => {
       return {
@@ -102,9 +102,51 @@ export async function fetchNews(pageNumber = 1, pageSize = 6) {
 
   } catch (error) {
     console.log('error in fetching newsList', error)
-    return [];
+    return { serializeBlogs: [], isNext: false };
   }
 }
+
+export async function fetchApprovedNews(pageNumber = 1, pageSize = 6) {
+  await connectToDB();
+  try {
+    // Calculate the number of news items to skip based on the page number and page size.
+    const skipAmount = (pageNumber - 1) * pageSize;
+
+    const newsList = await News.find({ approved: true }) // Filter by 'approved' field
+      .populate({
+        path: 'postedBy',
+        model: 'User', // Ensure this matches your User model name
+      })
+      .skip(skipAmount)
+      .limit(pageSize)
+      .exec();
+
+    if (!newsList || newsList.length === 0) {
+      console.log('No approved news found.');
+      return { serializeNews: [], isNext: false };
+    }
+
+    const serializeNews = newsList.map(news => {
+      return {
+        ...news._doc,
+        _id: news._id.toString(),
+        blocks: lzString.decompressFromEncodedURIComponent(news.blocks)
+      };
+    });
+
+    // Count the total number of approved news items
+    const totalApprovedNewsCount = await News.countDocuments({ approved: true });
+
+    const isNext = totalApprovedNewsCount > skipAmount + serializeNews.length;
+
+    return { serializeNews, isNext };
+
+  } catch (error) {
+    console.log('Error in fetching approved news', error);
+    return { serializeNews: [], isNext: false };
+  }
+}
+
 
 export async function deleteNews(id:string){
   await connectToDB();
@@ -118,7 +160,32 @@ export async function deleteNews(id:string){
 }
 
 
-export async function fetchSingleNew(blogId:string) {
+export async function updateNews(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const news = await News.findById(id);
+
+    if (!news) {
+      // Handle the case where the news with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    news.approved = !news.approved; // Toggle the 'approved' field
+
+    // Save the updated document
+    const updatedNews = await news.save();
+
+    return updatedNews;
+  } catch (error) {
+    console.log("Error in updating news", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+
+export async function fetchSingleNews(blogId:string) {
   await connectToDB();
   try {
       // Use `findOne` to find a single document by its `_id`

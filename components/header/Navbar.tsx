@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ModeToggler } from "@/components/themes/ModeToggler";
 
 import { UserButton } from "@clerk/nextjs";
+import DropdownUser from "../dashboard/Header/DropdownUser";
 
 interface NavbarProps {
   _id: string;
@@ -170,29 +171,7 @@ const Navbar = ({ user }: NavbarProps) => {
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0 gap-4">
                 {user ? (
-                  <>
-                    {!user?.admin ? (
-                      <Link href={`/profile/${user?.id}`}>
-                        <Image
-                          src={user?.image}
-                          alt={user?.username}
-                          width={32}
-                          height={32}
-                          className="rounded-full shadow-lg"
-                        />
-                      </Link>
-                    ) : (
-                      <Link href={`/dashboard`}>
-                        <Image
-                          src={user?.image}
-                          alt={user?.username}
-                          width={32}
-                          height={32}
-                          className="rounded-full shadow-lg"
-                        />
-                      </Link>
-                    )}
-                  </>
+                  <DropdownUser id={user.id} admin={user.admin} username={user.username} image={user.image} />
                 ) : (
                   <p>Button</p>
                 )}

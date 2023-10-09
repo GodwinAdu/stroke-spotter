@@ -44,7 +44,7 @@ const menuData = [
             {
                 id: 21,
                 title: "What we do",
-                path: "/what-we=do",
+                path: "/what-we-do",
                 newTab: false,
             },
             {

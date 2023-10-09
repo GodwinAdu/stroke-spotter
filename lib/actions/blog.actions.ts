@@ -31,7 +31,6 @@ export async function createBlogAdmin(blogContent: BlogcontentProps, path: strin
       blocks: blogContent.content, // Assuming "blocks" is the field in your Content schema
       approved: true
     },
-    { upsert: true }
     );
     await blog.save()
 
@@ -86,7 +85,7 @@ export async function fetchBlog(pageNumber = 1, pageSize = 6) {
 
     if (!blogs) {
       console.log('No blogs found with the given id.');
-      return;
+      return { serializeBlogs: [], isNext: false };
     }
     const serializeBlogs = blogs.map(blog => {
       return {
@@ -106,9 +105,50 @@ export async function fetchBlog(pageNumber = 1, pageSize = 6) {
 
   } catch (error) {
     console.log('error in fetching blogs', error)
-    return [];
+    return { serializeBlogs: [], isNext: false } ;
   }
 }
+export async function fetchApprovedBlog(pageNumber = 1, pageSize = 6) {
+  await connectToDB();
+  try {
+    // Calculate the number of posts to skip based on the page number and page size.
+    const skipAmount = (pageNumber - 1) * pageSize;
+
+    const blogs = await Content.find({ approved: true }) // Filter by 'approved' field
+      .populate({
+        path: 'postedBy',
+        model: 'User', // Ensure this matches your User model name
+      })
+      .skip(skipAmount)
+      .limit(pageSize)
+      .exec();
+
+    if (!blogs || blogs.length === 0) {
+      console.log('No approved blogs found.');
+      return { serializeBlogs: [], isNext: false };
+    }
+
+    const serializeBlogs = blogs.map(blog => {
+      return {
+        ...blog._doc,
+        _id: blog._id.toString(),
+        blocks: lzString.decompressFromEncodedURIComponent(blog.blocks)
+      };
+    });
+
+    // Count the total number of approved blogs
+    const totalApprovedBlogsCount = await Content.countDocuments({ approved: true });
+
+    const isNext = totalApprovedBlogsCount > skipAmount + serializeBlogs.length;
+
+    return { serializeBlogs, isNext };
+
+  } catch (error) {
+    console.log('Error in fetching approved blogs', error);
+    return { serializeBlogs: [], isNext: false };
+  }
+}
+
 
 export async function deleteBlog(id:string){
   await connectToDB();
@@ -118,6 +158,30 @@ export async function deleteBlog(id:string){
       
   } catch (error) {
       console.log("Error in deleting blog", error)
+  }
+}
+
+export async function updateBlog(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const blog = await Content.findById(id);
+
+    if (!blog) {
+      // Handle the case where the blog with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    blog.approved = !blog.approved; // Toggle the 'approved' field
+
+    // Save the updated document
+    const updatedBlog = await blog.save();
+
+    return updatedBlog;
+  } catch (error) {
+    console.log("Error in updating blog", error);
+    throw error; // You might want to handle the error more gracefully
   }
 }
 

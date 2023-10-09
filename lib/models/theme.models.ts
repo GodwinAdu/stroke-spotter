@@ -13,6 +13,6 @@ const themeSchema = new mongoose.Schema({
     }
 });
 
-const Theme = mongoose.model('Theme', themeSchema);
+const Theme = mongoose.models.Theme || mongoose.model("Theme", themeSchema);
 
-module.exports = Theme;
+export default Theme;

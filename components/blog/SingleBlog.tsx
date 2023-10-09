@@ -1,14 +1,16 @@
 "use client";
-import { deleteBlog } from "@/lib/actions/blog.actions";
+import { deleteBlog, updateBlog } from "@/lib/actions/blog.actions";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface SingleBlogProps {
   image: string;
   title: string;
   description: string;
   link: string;
-  id:string;
+  id: string;
+  approved: boolean;
 }
 
 const SingleBlog = ({
@@ -16,19 +18,30 @@ const SingleBlog = ({
   title,
   description,
   link,
-  id
+  id,
+  approved,
 }: SingleBlogProps) => {
 
-  const handleDelete = async (id:string) => {
-
+  const router = useRouter()
+  const handleDelete = async (id: string) => {
     try {
-      await deleteBlog(id)
+      await deleteBlog(id);
+      router.refresh();
     } catch (error) {
-      console.log("couldnt delete blog", error)
+      console.log("couldnt delete blog", error);
     }
-    console.log("api fired ", id)
+    console.log("api fired ", id);
   };
 
+  const handleToggleApprove: (id:string) => void = async (id) => {
+    try {
+      await updateBlog(id);
+      router.refresh();
+    } catch (error:any) {
+      console.log("fail to update approved status", error)
+    }
+  };
+  
   return (
     <div>
       <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -47,6 +60,14 @@ const SingleBlog = ({
               Read More
             </button>
           </Link>
+
+          <button
+            onClick={() => handleToggleApprove(id)}
+            className={`${approved ? "text-green-500" : "text-indigo/50"} hover:underline`}
+          >
+            {approved ? "Unapprove" : "Approve"}
+          </button>
+
           <button
             onClick={() => handleDelete(id)}
             className="text-red-500 hover:underline"

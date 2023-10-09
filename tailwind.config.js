@@ -8,6 +8,13 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    },
     fontFamily: {
       'satoshi': ['Satoshi', 'sans-serif'],
     },

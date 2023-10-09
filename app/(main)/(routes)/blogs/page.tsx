@@ -1,11 +1,11 @@
 
-import BlogCard from "@/components/blog/BlogCard";
-import SingleBlog from "@/components/blog/SingleBlog";
-import blogData from "@/components/blog/blogData";
+
+
+import SingleBlog from "@/components/blog/BlogCard";
 import Breadcrumb from "@/components/common/Breadcrumbs";
 import Pagination from "@/components/common/Pagination";
-import { fetchBlog } from "@/lib/actions/blog.actions";
-import { formatDate } from "@/lib/utils";
+import { fetchApprovedBlog} from "@/lib/actions/blog.actions";
+
 
 export const dynamic = 'force-dynamic'
 
@@ -19,7 +19,7 @@ const BlogPage = async ({
   searchParams: { [key: string]: string | undefined };
 }) => {
 
-  const blogs:blogProps = await fetchBlog(1,6) || {}
+  const blogs:blogProps = await fetchApprovedBlog(1,6) 
 
   console.log(blogs)
 
@@ -40,15 +40,11 @@ const BlogPage = async ({
           </div>
 
          
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-10">
           {blogs?.serializeBlogs?.map((blog) =>(
-            <BlogCard
+            <SingleBlog
                key={blog._id}
-               image={blog.image}
-               CardTitle={blog.title}
-               CardDescription={blog.shortDescription}
-               date={formatDate(blog.createdDate)}
-               link={`/blogs/${blog._id}`}
+               blog={blog}
              />
           ))}
         </div>

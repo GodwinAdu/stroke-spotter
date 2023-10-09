@@ -5,26 +5,28 @@ import "react-quill/dist/quill.snow.css";
 import { useReactQuill } from "@/hooks/useReactQuill"; // Replace with the correct path
 import { usePathname, useRouter } from "next/navigation";
 import lzString from "lz-string";
-import { createBlog } from "@/lib/actions/blog.actions";
-import { currentProfile } from "@/hooks/intial-profile";
+import { createBlogAdmin } from "@/lib/actions/blog.actions";
+
 
 
 const CreateBlog = () => {
-  const [formData, setFormData] = useState({
-    image: "", // Initialize image as an empty string
+  const initialFormData = {
+    image: "",
     title: "",
     shortDescription: "",
     tags: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormData);
 
   const { value, handleChange, modules } = useReactQuill();
   const [showEditor, setShowEditor] = useState(false);
+   const [isClicked, setIsClicked] = useState(false);
 
   const router = useRouter();
   const path = usePathname();
 
   // Function to handle changes in form fields
-  const handleFormDataChange = (e) => {
+  const handleFormDataChange = (e:any) => {
     const { name, value } = e.target;
 
     // Update the formData object based on the form field name
@@ -40,6 +42,12 @@ const CreateBlog = () => {
 
   const handleBack = () => {
     setShowEditor(false);
+  };
+
+  
+  // Function to reset formData to its initial state
+  const resetFormData = () => {
+    setFormData(initialFormData);
   };
 
   // Function to handle image selection
@@ -61,6 +69,7 @@ const CreateBlog = () => {
   };
 
   const handleCreateBlog = async () => {
+    setIsClicked(true)
     const compressedBlogContent = lzString.compressToEncodedURIComponent(value);
 
     const blogContent = {
@@ -68,18 +77,22 @@ const CreateBlog = () => {
       content: compressedBlogContent,
     };
 
-    await createBlog(blogContent, path);
+    await createBlogAdmin(blogContent, path);
     // You can now access all form data without selectedImage
+    resetFormData();
+    setIsClicked(false)
     router.back();
-    console.log("Form Data to Send:", blogContent);
+    
 
     // Redirect to the next page or perform any other actions
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-semibold mb-4">Create Blog</h1>
+    <>
+    <h1 className="text-3xl font-semibold mb-4">Create Blog</h1>
+    <div className=" mx-auto p-4">
       {!showEditor ? (
+        <>
         <form>
           <div className="mb-4">
             {formData.image === "" ? (
@@ -134,6 +147,7 @@ const CreateBlog = () => {
             </button>
           </div>
         </form>
+        </>
       ) : (
         <>
           <ReactQuill
@@ -155,14 +169,18 @@ const CreateBlog = () => {
             <button
               type="button"
               onClick={handleCreateBlog}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              disabled={isClicked}
+              className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${
+                isClicked ? "cursor-not-allowed" : ""
+              }`}
             >
-              Create Blog
+              {isClicked ? "Creating..." : "Create Blog"}
             </button>
           </div>
         </>
       )}
     </div>
+    </>
   );
 };
 
