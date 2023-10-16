@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from "react";
 import SucessfulModal from "./Successful";
 import { createSubscribtion } from "@/lib/actions/subscription.actions";
