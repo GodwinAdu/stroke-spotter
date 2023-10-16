@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Separator } from "../ui/separator";
 import { MessageSquare, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
+import Image from "next/image";
 
 
 interface NewsCardProps {
@@ -22,8 +23,8 @@ const NewsCard = ({
     <>
       <div className="w-full px-4">
         <div className="mx-auto mb-10 max-w-[370px]">
-          <div className="mb-8 overflow-hidden rounded">
-            <img src={image} alt="" className="w-full" />
+          <div className="mb-8 overflow-hidden  rounded">
+            <Image src={image} width={100} height={100} alt={CardTitle} className="w-full object-cover rounded-md mb-6 h-56" />
           </div>
           <div>
             <div className="flex justify-between items-center">

@@ -10,67 +10,253 @@ import { generateMembershipId } from "../utils";
 
 
 export async function fetchUser(userId: string) {
-    try {
-      connectToDB();
-  
-      return await User.findOne({ id: userId });
-    } catch (error: any) {
-      throw new Error(`Failed to fetch user: ${error.message}`);
-    }
+  try {
+    connectToDB();
+
+    return await User.findOne({ id: userId });
+  } catch (error: any) {
+    throw new Error(`Failed to fetch user: ${error.message}`);
   }
+}
 interface Params {
-    userId: string;
-    username: string;
-    name: string;
-    email:string,
-    phone:string,
-    gender:string;
-    country:string;
-    profession:string;
-    bio: string;
-    image: string;
-    path: string;
-  }
+  userId: string;
+  username: string;
+  name: string;
+  email: string,
+  phone: string,
+  gender: string;
+  country: string;
+  profession: string;
+  bio: string;
+  image: string;
+  path: string;
+}
 
 export async function updateUser({
-    userId,
-    bio,
-    name,
-    path,
-    username,
-    email,
-    phone,
-    gender,
-    country,
-    profession,
-    image,
-  }: Params): Promise<void> {
-    const uniqueId = await generateMembershipId()
-    try {
-      connectToDB();
-  
-      await User.findOneAndUpdate(
-        { id: userId },
-        {
-          username: username.toLowerCase(),
-          name,
-          bio,
-          image,
-          email,
-          phone,
-          gender,
-          profession,
-          memberId:uniqueId,
-          country,
-          onboarded: true,
-        },
-        { upsert: true }
-      );
-  
-      if (path === "/profile/edit") {
-        revalidatePath(path);
-      }
-    } catch (error: any) {
-      throw new Error(`Failed to create/update user: ${error.message}`);
+  userId,
+  bio,
+  name,
+  path,
+  username,
+  email,
+  phone,
+  gender,
+  country,
+  profession,
+  image,
+}: Params): Promise<void> {
+  const uniqueId = await generateMembershipId()
+  try {
+    connectToDB();
+
+    await User.findOneAndUpdate(
+      { id: userId },
+      {
+        username: username.toLowerCase(),
+        name,
+        bio,
+        image,
+        email,
+        phone,
+        sex: gender,
+        profession,
+        memberId: uniqueId,
+        country,
+        onboarded: true,
+      },
+      { upsert: true }
+    );
+
+    if (path === "/profile/edit" || "/dashboard/profile/edit") {
+      revalidatePath(path);
     }
+  } catch (error: any) {
+    throw new Error(`Failed to create/update user: ${error.message}`);
   }
+}
+
+
+
+export async function fetchUsers() {
+  await connectToDB();
+  try {
+
+    const users = await User.find({});
+
+    if (!users) return [];
+
+    const serializedUsers = users.map((user) => {
+      return {
+        ...user._doc,
+        _id: user._id.toString()
+      }
+    })
+
+    return serializedUsers
+  } catch (error: any) {
+    console.log("unable to fetch users", error)
+    return []
+  }
+}
+
+
+export async function updateUserAdmin(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      // Handle the case where the user with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    user.admin = !user.admin; // Toggle the 'admin' field
+
+    // Save the updated document
+    const updatedBUser = await user.save();
+
+    return updatedBUser;
+  } catch (error) {
+    console.log("Error in updating user", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+
+export async function updateSpeechWriter(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      // Handle the case where the user with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    user.speechWriter = !user.speechWriter; // Toggle the 'admin' field
+
+    // Save the updated document
+    const updatedBUser = await user.save();
+
+    return updatedBUser;
+  } catch (error) {
+    console.log("Error in updating user", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+
+export async function updateResearchWriter(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      // Handle the case where the user with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    user.researchWriter = !user.researchWriter; // Toggle the 'admin' field
+
+    // Save the updated document
+    const updatedBUser = await user.save();
+
+    return updatedBUser;
+  } catch (error) {
+    console.log("Error in updating user", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+
+export async function updateWriter(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      // Handle the case where the user with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    user.writer = !user.writer; // Toggle the 'admin' field
+
+    // Save the updated document
+    const updatedBUser = await user.save();
+
+    return updatedBUser;
+  } catch (error) {
+    console.log("Error in updating user", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+
+export async function updateTrainee(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      // Handle the case where the user with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    user.trainee = !user.trainee; // Toggle the 'admin' field
+
+    // Save the updated document
+    const updatedBUser = await user.save();
+
+    return updatedBUser;
+  } catch (error) {
+    console.log("Error in updating user", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+export async function updateDuespay(id: string) {
+  await connectToDB();
+  try {
+    // Find the document by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      // Handle the case where the user with the provided ID is not found
+      return null;
+    }
+
+    // Update the 'approved' field
+    user.duesPay = !user.duesPay; // Toggle the 'admin' field
+
+    // Save the updated document
+    const updatedBUser = await user.save();
+
+    return updatedBUser;
+  } catch (error) {
+    console.log("Error in updating user", error);
+    throw error; // You might want to handle the error more gracefully
+  }
+}
+
+
+export async function deleteUser(id: string) {
+  await connectToDB();
+  try {
+
+    const deleteUser = await User.findByIdAndDelete(id)
+    return deleteUser;
+
+  } catch (error) {
+    console.log("error in deleting user")
+  }
+}

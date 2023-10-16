@@ -1,5 +1,85 @@
+import { useEffect, useState } from "react";
+import SucessfulModal from "./Successful";
+import { createSubscribtion } from "@/lib/actions/subscription.actions";
+
 const NewsLetterBox = () => {
-    return (
+  const initialForm = {
+    name: "",
+    email: "",
+  };
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [formData, setFormData] = useState(initialForm);
+  const [isValid, setIsValid] = useState(false);
+
+  const handleFormData = (e: any) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Validation function to check if all fields are filled out
+  const validateForm = () => {
+    const isFormValid = Object.values(formData).every(
+      (value) => value.trim() !== ""
+    );
+    setIsValid(isFormValid);
+  };
+
+  useEffect(() => {
+    validateForm();
+  }, [formData]);
+
+  // Function to reset formData to its initial state
+  const resetFormData = () => {
+    setFormData(initialForm);
+  };
+
+  const handlePostSubmission = async (e: any) => {
+    e.preventDefault();
+    if (!isValid) return;
+    try {
+      const post = {
+        name: formData.name,
+        email: formData.email,
+      };
+      setIsClicked(true);
+      await createSubscribtion(post);
+      resetFormData();
+      setIsClicked(false);
+      setIsSuccessModalOpen(true);
+    } catch (error: any) {
+      console.log("unable to send newsletter", error);
+    } finally {
+      setIsClicked(false);
+      resetFormData();
+    }
+  };
+
+  // Function to close the success modal
+  const closeSuccessModal = () => {
+    setIsSuccessModalOpen(false);
+  };
+
+  useEffect(() => {
+    // Automatically close the success modal after 20 seconds (20000 milliseconds)
+    if (isSuccessModalOpen) {
+      const timeoutId = setTimeout(() => {
+        closeSuccessModal();
+      }, 10000);
+
+      // Clear the timeout when the component unmounts or when the modal is closed manually
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [isSuccessModalOpen]);
+
+  return (
+    <>
       <div
         className="wow fadeInUp relative z-10 rounded-md bg-primary/[3%] p-8 dark:bg-primary/10 sm:p-11 lg:p-8 xl:p-11"
         data-wow-delay=".2s"
@@ -7,25 +87,32 @@ const NewsLetterBox = () => {
         <h3 className="mb-4 text-2xl font-bold leading-tight text-black dark:text-white">
           Subscribe to receive future updates
         </h3>
-       
-        <form>
+
+        <form onSubmit={handlePostSubmission}>
           <input
             type="text"
             name="name"
+            value={formData.name}
+            onChange={handleFormData}
             placeholder="Enter your name"
             className="mb-4 w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
           />
           <input
             type="email"
             name="email"
+            value={formData.email}
+            onChange={handleFormData}
             placeholder="Enter your email"
             className="mb-4 w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
           />
-          <input
-            type="submit"
-            value="Subscribe"
-            className="duration-80 mb-4 w-full cursor-pointer rounded-md border border-transparent dark:bg-primary bg-indigo/50 py-3 px-6 text-center text-base font-medium text-white outline-none transition ease-in-out hover:bg-opacity-80 hover:shadow-signUp focus-visible:shadow-none"
-          />
+          <button
+            onClick={handlePostSubmission}
+            disabled={isClicked}
+            className={`duration-80 mb-4 w-full cursor-pointer rounded-md border border-transparent dark:bg-primary bg-indigo/50 py-3 px-6 text-center text-base font-medium text-white outline-none transition ease-in-out hover:bg-opacity-80 hover:shadow-signUp focus-visible:shadow-none 
+                      ${isClicked ? "cursor-not-allowed" : ""}`}
+          >
+            subscribe
+          </button>
           <p className="text-center text-base font-medium leading-relaxed text-body-color">
             No spam guaranteed, So please don’t send any spam mail.
           </p>
@@ -166,8 +253,14 @@ const NewsLetterBox = () => {
           </svg>
         </div>
       </div>
-    );
-  };
-  
-  export default NewsLetterBox;
-  
+      <SucessfulModal
+        isOpen={isSuccessModalOpen}
+        onClose={closeSuccessModal}
+        body="Thank you for subscribing to our newsletter. You'll now receive the latest updates and news directly in your inbox."
+        status="Subscription Successful!"
+      />
+    </>
+  );
+};
+
+export default NewsLetterBox;

@@ -147,15 +147,62 @@ export async function fetchApprovedNews(pageNumber = 1, pageSize = 6) {
   }
 }
 
-
-export async function deleteNews(id:string){
+// managing news by users?
+export async function fetchManageNews(pageNumber = 1, pageSize = 6) {
   await connectToDB();
   try {
-      const result = await News.findByIdAndDelete(id)
-      return result
-      
+    const user = await currentProfile()
+    // Calculate the number of news items to skip based on the page number and page size.
+    const skipAmount = (pageNumber - 1) * pageSize;
+
+    const newsList = await News.find({postedBy:user?._id }) // Filter by 'approved' field
+      .populate({
+        path: 'postedBy',
+        model: 'User', // Ensure this matches your User model name
+      })
+      .skip(skipAmount)
+      .limit(pageSize)
+      .exec();
+
+    if (!newsList || newsList.length === 0) {
+      console.log('No approved news found.');
+      return { serializeNews: [], isNext: false };
+    }
+
+    const serializeNews = newsList.map(news => {
+      return {
+        ...news._doc,
+        _id: news._id.toString(),
+        blocks: lzString.decompressFromEncodedURIComponent(news.blocks)
+      };
+    });
+
+    // Count the total number of approved news items
+    const totalApprovedNewsCount = await News.countDocuments({ postedBy:user?._id });
+
+    const isNext = totalApprovedNewsCount > skipAmount + serializeNews.length;
+
+    return { serializeNews, isNext };
+
   } catch (error) {
-      console.log("Error in deleting news", error)
+    console.log('Error in fetching approved news', error);
+    return { serializeNews: [], isNext: false };
+  }
+}
+
+
+export async function deleteNews(id: string) {
+  await connectToDB();
+  try {
+    const result = await News.findByIdAndDelete(id);
+    if (result) {
+      console.log('News deleted successfully:', result);
+    } else {
+      console.log('News not found or not deleted.');
+    }
+    return result;
+  } catch (error) {
+    console.log('Error in deleting news:', error);
   }
 }
 

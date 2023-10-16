@@ -25,7 +25,7 @@ const result = await fetchSpeech(1,6);
       <Breadcrumb pageName="Speech Posts" />
       <div className="flex justify-end items-center space-x-4 p-4">
         <Link
-          href="/dashboard/report-research/createResearch"
+          href="/dashboard/speech/create-speech"
           className="px-8 py-3 rounded-xl font-medium shadow-xl bg-white hover:bg-indigo/50 hover:text-white text-blue-500 hover:bg-gray-100 transition duration-300"
         >
           Create Speech

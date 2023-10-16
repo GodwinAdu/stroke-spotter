@@ -96,7 +96,7 @@ const DropdownUser = ({ id, admin, username, image }: UserProps) => {
               <>
                 {pathname.includes("/dashboard") ? (
                   <Link
-                    href={`/adminProfile/${id}`}
+                    href={`/dashboard/profile/${id}`}
                     className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                   >
                     <svg
@@ -116,7 +116,7 @@ const DropdownUser = ({ id, admin, username, image }: UserProps) => {
                         fill=""
                       />
                     </svg>
-                    My Profile
+                    Admin Profile
                   </Link>
                 ) : (
                   <Link
@@ -177,7 +177,7 @@ const DropdownUser = ({ id, admin, username, image }: UserProps) => {
           </li>
           <li>
             <Link
-              href="/pages/settings"
+              href="#"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
             >
               <svg

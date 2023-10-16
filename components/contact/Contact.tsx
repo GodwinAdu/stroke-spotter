@@ -1,7 +1,93 @@
+"use client";
+import { useEffect, useState } from "react";
 import NewsLetterBox from "./NewsLetter";
+import SucessfulModal from "./Successful";
+import { createContact } from "@/lib/actions/contact.actions";
+interface Props {
+  name: string;
+  email: string;
+  message: string;
 
-
+}
 const Contact = () => {
+  const initialForm: Props = {
+    name: "",
+    email: "",
+    message: "",
+  };
+  const [formData, setFormData] = useState(initialForm);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isValid, setIsValid] = useState(false)
+
+  const handleFormData = (e: any) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Validation function to check if all fields are filled out
+  const validateForm = () => {
+    const isFormValid = Object.values(formData).every(
+      (value) => value.trim() !== ""
+    );
+    setIsValid(isFormValid);
+  };
+
+  useEffect(() => {
+    validateForm();
+  }, [formData]);
+
+  // Function to reset formData to its initial state
+  const resetFormData = () => {
+    setFormData(initialForm);
+  };
+
+
+  // Function to handle successful post submission
+  const handlePostSubmission = async (e: any) => {
+    e.preventDefault();
+    if (!isValid) return;
+    try {
+      setIsClicked(true)
+      const post = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      }
+      await createContact({ post })
+      setIsClicked(false);
+      resetFormData();
+      // Show the success modal
+      setIsSuccessModalOpen(true);
+    } catch (error: any) {
+      console.log("unable to send contact data", error);
+      setIsClicked(false)
+      resetFormData();
+    }
+  };
+
+  // Function to close the success modal
+  const closeSuccessModal = () => {
+    setIsSuccessModalOpen(false);
+  };
+
+  useEffect(() => {
+    // Automatically close the success modal after 20 seconds (20000 milliseconds)
+    if (isSuccessModalOpen) {
+      const timeoutId = setTimeout(() => {
+        closeSuccessModal();
+      }, 10000);
+
+      // Clear the timeout when the component unmounts or when the modal is closed manually
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [isSuccessModalOpen]);
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -30,6 +116,9 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleFormData}
                         placeholder="Enter your name"
                         className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       />
@@ -44,7 +133,10 @@ const Contact = () => {
                         Your Email
                       </label>
                       <input
+                        name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleFormData}
                         placeholder="Enter your email"
                         className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                       />
@@ -60,6 +152,8 @@ const Contact = () => {
                       </label>
                       <textarea
                         name="message"
+                        value={formData.message}
+                        onChange={handleFormData}
                         rows={5}
                         placeholder="Enter your Message"
                         className="w-full resize-none rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
@@ -67,7 +161,16 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="w-full px-4">
-                    <button className="rounded-md dark:bg-primary bg-indigo/50 py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+                    <button
+                      onClick={handlePostSubmission}
+                      disabled={isClicked}
+                      className={`rounded-md dark:bg-primary 
+                      bg-indigo/50 py-4 px-9 text-base font-medium 
+                      text-white transition duration-300 ease-in-out 
+                      hover:bg-opacity-80 hover:shadow-signUp
+                      ${isClicked ? "cursor-not-allowed" : ""
+                        }`}
+                    >
                       Submit Ticket
                     </button>
                   </div>
@@ -80,6 +183,14 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <SucessfulModal
+        isOpen={isSuccessModalOpen}
+        onClose={closeSuccessModal}
+        body="Thank you for contacting Spot Stroke Fast Foundation. Your request has
+        been submitted to our administration, and you will receive a response
+        soon."
+        status="Success!"
+      />
     </section>
   );
 };

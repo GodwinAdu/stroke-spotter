@@ -6,9 +6,10 @@ import { useReactQuill } from "@/hooks/useReactQuill"; // Replace with the corre
 import { usePathname, useRouter } from "next/navigation";
 import lzString from "lz-string";
 import Breadcrumb from "@/components/common/Breadcrumbs";
-import { createSpeech } from "@/lib/actions/speech.actions";
 
-const CreateSpeech = () => {
+import { createTrainPost } from "@/lib/actions/training.actions";
+
+const CreateTrainee = () => {
   const initialFormData = {
     image: "",
     title: "",
@@ -101,7 +102,7 @@ const CreateSpeech = () => {
       content: compressedBlogContent,
     };
 
-    await createSpeech(newsContent, path);
+    await createTrainPost(newsContent, path);
     // reset all formDAta
     resetFormData();
 
@@ -209,4 +210,4 @@ const CreateSpeech = () => {
   );
 };
 
-export default CreateSpeech;
+export default CreateTrainee;

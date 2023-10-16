@@ -47,7 +47,7 @@ const NewsPage = async ({
        
       </div>
       <Pagination
-        path='/blog'
+        path='/news'
         pageNumber={searchParams?.page ? +searchParams.page : 1}
         isNext={news?.isNext}
       />

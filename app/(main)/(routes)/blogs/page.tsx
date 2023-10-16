@@ -40,7 +40,7 @@ const BlogPage = async ({
           </div>
 
          
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-6 md:px-10">
           {blogs?.serializeBlogs?.map((blog) =>(
             <SingleBlog
                key={blog._id}
@@ -51,7 +51,7 @@ const BlogPage = async ({
        
       </div>
       <Pagination
-        path='/blog'
+        path='/blogs'
         pageNumber={searchParams?.page ? +searchParams.page : 1}
         isNext={blogs?.isNext}
       />

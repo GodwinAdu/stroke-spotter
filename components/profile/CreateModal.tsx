@@ -115,6 +115,22 @@ export function CreateModal({
               </div>
             </div>
           )}
+          {!writer && !trainee && !researchWriter && !speechWriter && (
+            <div className="mt-5">
+              <div className="flex flex-col items-center">
+                <p className="text-2xl font-bold text-red-500 mb-4">Oops!</p>
+                <p className="text-lg text-gray-700 mb-4">
+                  It appears you are not eligible to create a post.
+                </p>
+                <p className="text-base text-gray-600">
+                  Please contact the administrator for assistance.
+                </p>
+                <button className="mt-4 px-6 py-3 rounded-full dark:bg-blue-500 bg-indigo/50 text-white hover:bg-blue-600 transition duration-300">
+                  Contact Administrator
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

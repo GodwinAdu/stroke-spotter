@@ -6,11 +6,37 @@ import ChartTwo from "../Charts/ChartTwo";
 import ChatCard from "../Chat/ChatCard";
 import TableOne from "../Tables/TableOne";
 
-
-
 import CardDataStats from "../CardDataStats";
+import Link from "next/link";
 
-const ECommerce: React.FC = () => {
+
+
+interface usersProps{
+  _id: string;
+  id:string;
+   __v: 0;
+   admin: boolean;
+   bio: string;
+   country: string;
+   duesPay: boolean;
+   image: string;
+   memberId:string;
+   memberType: string;
+   name:string;
+   onboarded: true;
+   phone: string;
+   profession: string;
+   researchWriter: boolean;
+   speechWriter: boolean;
+   trainee: boolean;
+   username: string;
+   writer: true
+   email: string,
+   sex?: string
+}
+
+
+const ECommerce = ({users}:usersProps[]) => {
   return (
     <>
 
@@ -76,7 +102,8 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Users" total="0" rate="0" levelDown>
+        <Link href="/dashboard/users">
+          <CardDataStats title="Total Users" total={users.length} rate="0" levelDown>
           <svg
             className="fill-primary dark:fill-white"
             width="22"
@@ -99,6 +126,7 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
+        </Link>
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">

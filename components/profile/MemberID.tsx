@@ -3,6 +3,7 @@ import { Check, Copy, PlusCircleIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface MemberIdProps {
   memberId: string;
@@ -12,6 +13,9 @@ const MemberID = ({ memberId, duesPay }: MemberIdProps) => {
   const [activeQuestionId, setActiveQuestionId] = useState<boolean>(false);
   const [membershipId, setMembershipId] = useState<string>(memberId); // Replace with your Member ID
   const [copied, setCopied] = useState<boolean>(false);
+
+
+  const pathname = usePathname();
 
   const handleCopyClick = () => {
     // Copy the Membership ID to the clipboard
@@ -61,9 +65,13 @@ const MemberID = ({ memberId, duesPay }: MemberIdProps) => {
             </div>
 
             {!duesPay ? (
-              <Link href="/membership-renewals">
-                <Button variant="outline">Renew membership</Button>
-              </Link>
+              <>
+                {!pathname.includes("dashboard") ? (
+                  <Link href="/membership-renewals">
+                  <Button variant="outline">Renew membership</Button>
+                </Link>
+                ): null}
+              </>
             ) : (
               <div className=" mt-4 text-green-500 font-bold flex items-center justify-center gap-3">
                 <p>Active Member</p>

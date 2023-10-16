@@ -23,12 +23,12 @@ export function formatDate(dateString: string) {
 
 // generate membership ID
 export async function generateMembershipId() {
-  const prefix = "spot_";
+  const prefix = "ssff_";
   const numDigits = 10;
   let randomDigits = "";
 
   for (let i = 0; i < numDigits; i++) {
-    const randomDigit = Math.floor(Math.random() * 15);
+    const randomDigit = Math.floor(Math.random() * 101);
     randomDigits += randomDigit.toString();
   }
   const memberId = prefix + randomDigits;

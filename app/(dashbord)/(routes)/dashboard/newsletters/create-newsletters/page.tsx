@@ -5,16 +5,16 @@ import "react-quill/dist/quill.snow.css";
 import { useReactQuill } from "@/hooks/useReactQuill"; // Replace with the correct path
 import { usePathname, useRouter } from "next/navigation";
 import lzString from "lz-string";
-import { createBlog } from "@/lib/actions/blog.actions";
 import Breadcrumb from "@/components/common/Breadcrumbs";
+import { createNewsletter } from "@/lib/actions/newsletter.actions";
 
-const CreateBlog = () => {
+const CreateNewsletters = () => {
   const initialFormData = {
     image: "",
     title: "",
     shortDescription: "",
-    tags: "",
   };
+
   const [formData, setFormData] = useState(initialFormData);
 
   const { value, handleChange, modules } = useReactQuill();
@@ -48,6 +48,8 @@ const CreateBlog = () => {
     validateForm();
   }, [formData]);
 
+  
+
   const handleNext = () => {
     setShowEditor(true);
   };
@@ -77,31 +79,33 @@ const CreateBlog = () => {
           });
         }
       };
+
       reader.readAsDataURL(file); // Read the file as data URL
     }
   };
 
   const handleCreateBlog = async () => {
-    if (!value) return;
-    setIsClicked(true);
+    if(!value) return;
+    setIsClicked(true)
     const compressedBlogContent = lzString.compressToEncodedURIComponent(value);
 
-    const blogContent = {
+    const newsContent = {
       ...formData,
       content: compressedBlogContent,
     };
 
-    await createBlog(blogContent, path);
-    // reset form data
+    await createNewsletter(newsContent, path);
+    // You can now access all form data without selectedImage
     resetFormData();
-
     setIsClicked(false);
     router.back();
+
+    // Redirect to the next page or perform any other actions
   };
 
   return (
     <>
-      <Breadcrumb pageName="Create your Blog" />
+      <Breadcrumb pageName="Create your News" />
 
       <div className="container mx-auto p-4">
         {!showEditor ? (
@@ -139,55 +143,18 @@ const CreateBlog = () => {
                 className="border border-gray-300 p-2 rounded w-full h-32"
               />
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-600">Tags:</label>
-              <select
-                name="tags"
-                value={formData.tags}
-                onChange={handleFormDataChange}
-                className="border border-gray-300 p-2 rounded w-full"
-              >
-                <option value="">Choose a Tag for the blog</option>
-                <option value="Alternative Medicine">Alternative Medicine</option>
-                <option value="Diet">Diet</option>
-                <option value="Disease Prevention">Disease Prevention</option>
-                <option value="Elderly Care">Elderly Care</option>
-                <option value="Exercise">Exercise</option>
-                <option value="First Aid">First Aid</option>
-                <option value="Fitness">Fitness</option>
-                <option value="Health">Health</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Health Promotion">Health Promotion</option>
-                <option value="Healthy Eating">Healthy Eating</option>
-                <option value="Healthy Living">Healthy Living</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Medical Advice">Medical Advice</option>
-                <option value="Men's Health">Men's Health</option>
-                <option value="Mental Health">Mental Health</option>
-                <option value="Natural Remedies">Natural Remedies</option>
-                <option value="Nutrition">Nutrition</option>
-                <option value="Self-Care">Self-Care</option>
-                <option value="Sleep">Sleep</option>
-                <option value="Stress Management">Stress Management</option>
-                <option value="Wellness">Wellness</option>
-                <option value="Weight Loss">Weight Loss</option>
-                <option value="Women's Health">Women's Health</option>
-                <option value="Others">Others</option>
-                {/* Add more options as needed */}
-              </select>
-            </div>
 
-            {isValid && (
-              <div className="mb-4">
+            <div className="mb-4">
+              {isValid && (
                 <button
                   type="button"
                   onClick={handleNext}
                   className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  Next
+                  Continue..
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </form>
         ) : (
           <>
@@ -215,7 +182,7 @@ const CreateBlog = () => {
                   isClicked ? "cursor-not-allowed" : ""
                 }`}
               >
-                {isClicked ? "Creating..." : "Create Blog"}
+                {isClicked ? "Creating..." : "Create post"}
               </button>
             </div>
           </>
@@ -225,4 +192,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default CreateNewsletters;

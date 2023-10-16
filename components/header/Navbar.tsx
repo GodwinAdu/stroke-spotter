@@ -173,7 +173,12 @@ const Navbar = ({ user }: NavbarProps) => {
                 {user ? (
                   <DropdownUser id={user.id} admin={user.admin} username={user.username} image={user.image} />
                 ) : (
-                  <p>Button</p>
+                  <Link
+                    href="/donate"
+                  className="ease-in-up hidden rounded-md bg-indigo/50 dark:bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                >
+                  Donate
+                </Link>
                 )}
 
                 <div>
