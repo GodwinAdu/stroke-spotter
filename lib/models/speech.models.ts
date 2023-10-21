@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-
-
 // Page Schema
 const speechSchema = new mongoose.Schema({
   postedBy: {

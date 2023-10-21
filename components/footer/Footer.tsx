@@ -87,10 +87,7 @@ export default function Footer() {
           {/* 5th block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-3">
             <h6 className="text-indigo/50 dark:text-white font-bold mb-2">Subscribe</h6>
-            <p className="text-sm text-gray-600 mb-4"> Spot stroke fast Foundation is willing to provide you with
-              efficient healthy tips. For you to recieve this tips we urge all
-              Users to subscribe to our latest news using their Email. Thank
-              you.</p>
+            <p className="text-sm text-gray-600 mb-4"> Spot Stroke Fast Foundation offers valuable health tips. To access them, please subscribe to our newsletter with your email. Thank you</p>
             <form>
               <div className="flex flex-wrap mb-4">
                 <div className="w-full">

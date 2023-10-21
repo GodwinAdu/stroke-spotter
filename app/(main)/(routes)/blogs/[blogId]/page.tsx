@@ -131,12 +131,12 @@ const BlogDetails = async ({ params }: { params: { blogId: string } }) => {
                   
                   
                   <div className="relative z-10 mb-10 overflow-hidden rounded-md bg-primary bg-opacity-10 p-8 md:p-9 lg:p-8 xl:p-9">
-                    <p className="text-center text-base font-medium italic text-body-color">
+                    {/* <p className="text-center text-base font-medium italic text-body-color">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod incididunt utionals labore et dolore magna
                       aliqua. Quis lobortis scelerisque fermentum, The Neque ut
                       etiam sit amet.
-                    </p>
+                    </p> */}
                     <span className="absolute left-0 top-0 z-[-1]">
                       <svg
                         width="132"
@@ -278,11 +278,11 @@ const BlogDetails = async ({ params }: { params: { blogId: string } }) => {
                       </svg>
                     </span>
                   </div>
-                  <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+                  {/* <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
                     consectetur adipiscing elit in voluptate velit esse cillum
                     dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                     mattis vulputate cupidatat.
-                  </p>
+                  </p> */}
                   <div className="items-center justify-between sm:flex">
                     <div className="mb-5">
                       <h5 className="mb-3 text-sm font-medium text-body-color">
@@ -331,34 +331,34 @@ const BlogDetails = async ({ params }: { params: { blogId: string } }) => {
                 </form>
               </div>
               <div className="mb-10 rounded-md bg-primary bg-opacity-5 dark:bg-opacity-10">
-                <h3 className="border-b border-body-color border-opacity-10 py-4 px-8 text-lg font-semibold text-black dark:border-white dark:border-opacity-10 dark:text-white">
+                {/* <h3 className="border-b border-body-color border-opacity-10 py-4 px-8 text-lg font-semibold text-black dark:border-white dark:border-opacity-10 dark:text-white">
                   Related Posts
-                </h3>
+                </h3> */}
                 <ul className="p-8">
-                  <li className="mb-6 border-b border-body-color border-opacity-10 pb-6 dark:border-white dark:border-opacity-10">
+                  {/* <li className="mb-6 border-b border-body-color border-opacity-10 pb-6 dark:border-white dark:border-opacity-10">
                     <RelatedPost
                       title="Best way to boost your online sales."
                       image="/images/blog/post-01.jpg"
                       slug="#"
                       date="12 Feb 2025"
                     />
-                  </li>
-                  <li className="mb-6 border-b border-body-color border-opacity-10 pb-6 dark:border-white dark:border-opacity-10">
+                  </li> */}
+                  {/* <li className="mb-6 border-b border-body-color border-opacity-10 pb-6 dark:border-white dark:border-opacity-10">
                     <RelatedPost
                       title="50 Best web design tips & tricks that will help you."
                       image="/images/blog/post-02.jpg"
                       slug="#"
                       date="15 Feb, 2024"
                     />
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <RelatedPost
                       title="The 8 best landing page builders, reviewed"
                       image="/images/blog/post-03.jpg"
                       slug="#"
                       date="05 Jun, 2024"
                     />
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               <div className="mb-10 rounded-md bg-primary bg-opacity-5 dark:bg-opacity-10">

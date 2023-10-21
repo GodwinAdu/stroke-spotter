@@ -72,7 +72,7 @@ const UserDetail = ({ user }:usersProps) => {
       console.log("unable to delete user", error);
     }
   };
-  const handleWriter = async (id) => {
+  const handleWriter:(id:string) => void = async (id) => {
     try {
       await updateWriter(id);
       router.refresh();

@@ -8,8 +8,9 @@ import lzString from "lz-string";
 import Breadcrumb from "@/components/common/Breadcrumbs";
 
 import { createTrainPost } from "@/lib/actions/training.actions";
+import { createSpeech } from "@/lib/actions/speech.actions";
 
-const CreateTrainee = () => {
+const CreateSpeech = () => {
   const initialFormData = {
     image: "",
     title: "",
@@ -102,7 +103,7 @@ const CreateTrainee = () => {
       content: compressedBlogContent,
     };
 
-    await createTrainPost(newsContent, path);
+    await createSpeech(newsContent, path);
     // reset all formDAta
     resetFormData();
 
@@ -210,4 +211,4 @@ const CreateTrainee = () => {
   );
 };
 
-export default CreateTrainee;
+export default CreateSpeech;

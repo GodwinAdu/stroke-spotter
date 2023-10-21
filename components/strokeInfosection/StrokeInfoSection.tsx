@@ -6,7 +6,7 @@ const StrokeInfoSection = () => {
   return (
     <section className="bg-blue-100 p-8 rounded-lg shadow-lg dark:text-black">
       <div className="max-w-xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-4 ">Understanding Strokes</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 ">Understanding Stroke</h2>
 
         <p className="text-gray-700 mb-4">
           A stroke occurs when blood flow to an area of the brain is cut off. When brain cells are deprived of oxygen, they begin to die, leading to irreversible damage.

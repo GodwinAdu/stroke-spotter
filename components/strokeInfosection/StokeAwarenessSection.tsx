@@ -9,7 +9,7 @@ const StrokeAwarenessSection: React.FC = () => {
       <div className="max-w-2xl mx-auto">
 
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Awareness on Strokes</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Awareness on Stroke</h2>
           <p className="text-gray-400">
             Strokes can lead to significant complications when not detected early. Knowledge and early intervention can make all the difference.
           </p>

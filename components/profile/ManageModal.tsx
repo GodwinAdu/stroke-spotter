@@ -30,7 +30,7 @@ export function ManageModal({
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          // disabled={!duesPay}
+          disabled={!duesPay}
           variant={!duesPay ? "ghost" : "outline"}
         >
           Manage post

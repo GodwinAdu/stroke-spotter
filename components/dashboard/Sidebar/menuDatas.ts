@@ -44,7 +44,7 @@ export const menuDatas:MenuItem[] = [
       label: 'Stories',
       icon: '<svg>...</svg>', // SVG data for the Calendar icon
       subItems: [
-        { label: 'Stroke Survivor', path: '/dashboard/storke-survivor' },
+        { label: 'Stroke Survivor', path: '/dashboard/stroke-survivor' },
         { label: 'Stroke Victim', path: '/dashboard/stroke-victim' },
         { label: 'Interviews', path: '/dashboard/interview' },
         { label: 'Nurses Stories', path: '/dashboard/nurses-stories' },
