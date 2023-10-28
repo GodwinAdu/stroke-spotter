@@ -26,7 +26,7 @@ export default function Home() {
       <StrokeInfoSection />
       <StrokeAwarenessSection />
       <Features />
-      <AboutSectionOne />
+      {/* <AboutSectionOne /> */}
       <AboutSectionTwo />
       <StrokeByContinentSection />
       <StrokePersonalStoriesSection />

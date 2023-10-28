@@ -2,7 +2,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { deleteUser, updateDuespay, updateResearchWriter, updateSpeechWriter, updateTrainee, updateUserAdmin, updateWriter } from '@/lib/actions/user.actions';
 import { useRouter } from 'next/navigation';
-import {cn} from '@/lib/utils/cn';
+import { cn } from '@/lib/utils';
+
 
 interface usersProps{
   _id: string;
@@ -28,7 +29,7 @@ interface usersProps{
    sex?: string
 }
 
-const UserDetail = ({ user }:usersPropsn) => {
+const UserDetail = ({ user }:usersProps) => {
   const router = useRouter();
 
   const handleDeleteUser = async (id) => {
