@@ -225,3 +225,16 @@ body,
 .pagination {
   @apply mt-10 flex w-full items-center justify-center gap-5;
 }
+
+
+/* CSS for Instagram and YouTube Icons with Gradient Colors */
+
+.instagram-icon {
+  color: linear-gradient(45deg, #C13584, #FD4168);
+  /* Add any other styling you want for the Instagram icon */
+}
+
+.youtube-icon {
+  color: linear-gradient(45deg, #FF0000, #FF6600);
+  /* Add any other styling you want for the YouTube icon */
+}

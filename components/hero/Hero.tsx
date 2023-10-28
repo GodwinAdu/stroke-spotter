@@ -1,4 +1,4 @@
-import VideoThumb from "@/public/icons/hero-image.png";
+import VideoThumb from "@/public/overview/our-member.jpg";
 
 import ModalVideo from "@/components/modal-video";
 import Link from "next/link";

@@ -28,7 +28,7 @@ export async function generateMembershipId() {
   let randomDigits = "";
 
   for (let i = 0; i < numDigits; i++) {
-    const randomDigit = Math.floor(Math.random() * 101);
+    const randomDigit = Math.floor(Math.random() * 10);
     randomDigits += randomDigit.toString();
   }
   const memberId = prefix + randomDigits;

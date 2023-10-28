@@ -34,7 +34,7 @@ export function CreateModal({
       <DialogTrigger asChild>
         <Button
           disabled={!duesPay}
-          variant={duesPay ? "destructive" : "primary"}
+          variant={!duesPay ? "destructive" : "primary"}
         >
           Create post
         </Button>
