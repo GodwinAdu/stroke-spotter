@@ -10,10 +10,14 @@ import { generateMembershipId } from "../utils";
 
 
 export async function fetchUser(userId: string) {
-  try {
+  console.log(userId,"userId")
+  try {                                                            
     connectToDB();
-
-    return await User.findOne({ id: userId });
+    const user = await User.findOne({ id: userId });
+    if (!user) {
+      return null
+    }
+    return JSON.parse(JSON.stringify(user))
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }

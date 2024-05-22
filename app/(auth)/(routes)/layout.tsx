@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Stroke-spotter hub",
-  description: "Created by Jutech Dev",
+  title: "Spot Stroke fast Auth",
+  description: "Created by Jutech Devs",
 };
 
 export default function RootLayout({

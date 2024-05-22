@@ -3,7 +3,9 @@ import Navbar from "./Navbar"
 
 
 const RenderNavbar = async () => {
-    const user = await currentProfile()
+  const user = await currentProfile()
+
+  console.log(user,"user fetch")
   return (
     <>
       <Navbar user={user} />

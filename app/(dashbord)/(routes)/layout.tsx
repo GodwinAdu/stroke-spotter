@@ -3,7 +3,13 @@ import "./data-tables-css.css";
 import "./satoshi.css";
 import Sidebar from "@/components/dashboard/Sidebar";
 import Navbar from "@/components/dashboard/Header/Navbar";
+import { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+  title: "Spot Stroke fast Admin",
+  description: "Created by Jutech Devs",
+};
 export default function RootLayout({
   children,
 }: {

@@ -1,35 +1,35 @@
-import React from 'react';
+"use client"
 import { Button } from '@/components/ui/button';
 import { deleteUser, updateDuespay, updateResearchWriter, updateSpeechWriter, updateTrainee, updateUserAdmin, updateWriter } from '@/lib/actions/user.actions';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 
-interface usersProps{
+interface usersProps {
   _id: string;
-  id:string;
-   __v: 0;
-   admin: boolean;
-   bio: string;
-   country: string;
-   duesPay: boolean;
-   image: string;
-   memberId:string;
-   memberType: string;
-   name:string;
-   onboarded: true;
-   phone: string;
-   profession: string;
-   researchWriter: boolean;
-   speechWriter: boolean;
-   trainee: boolean;
-   username: string;
-   writer: true
-   email: string,
-   sex?: string
+  id: string;
+  __v: 0;
+  admin: boolean;
+  bio: string;
+  country: string;
+  duesPay: boolean;
+  image: string;
+  memberId: string;
+  memberType: string;
+  name: string;
+  onboarded: true;
+  phone: string;
+  profession: string;
+  researchWriter: boolean;
+  speechWriter: boolean;
+  trainee: boolean;
+  username: string;
+  writer: true
+  email: string,
+  sex?: string
 }
 
-const UserDetail = ({ user }:usersProps) => {
+const UserDetail = ({ user }: usersProps) => {
   const router = useRouter();
 
   const handleDeleteUser = async (id) => {

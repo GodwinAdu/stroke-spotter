@@ -8,8 +8,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "stroke spotter hub",
-  description: "spot stroke fast foundation",
+  title: "Spot Stroke fast",
+  description: "Created by Jutech Devs",
 };
 
 export default function RootLayout({

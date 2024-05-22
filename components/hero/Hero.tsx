@@ -2,11 +2,13 @@ import VideoThumb from "@/public/overview/our-member.jpg";
 
 import ModalVideo from "@/components/modal-video";
 import Link from "next/link";
+import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { Button } from "../ui/button";
 
 export default function Hero() {
   return (
     <section className="relative">
-     
+
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Hero content */}
@@ -44,12 +46,11 @@ export default function Hero() {
                   </Link>
                 </div>
                 <div className="">
-                  <Link
-                    className="btn text-white bg-dark py-3 px-4 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                    href="/sign-in"
-                  >
-                    Sign In
-                  </Link>
+                  <SignedOut>
+                    <SignInButton>
+                      <Button>Sign In</Button>
+                    </SignInButton>
+                  </SignedOut>
                 </div>
               </div>
             </div>

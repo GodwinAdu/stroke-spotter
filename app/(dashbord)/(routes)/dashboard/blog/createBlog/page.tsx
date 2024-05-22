@@ -121,6 +121,8 @@ const CreateBlog = () => {
                   Short Description:
                 </label>
                 <textarea
+                  minLength={10}
+                  maxLength={50}
                   name="shortDescription"
                   value={formData.shortDescription}
                   onChange={handleFormDataChange}
@@ -199,9 +201,8 @@ const CreateBlog = () => {
                 type="button"
                 onClick={handleCreateBlog}
                 disabled={isClicked}
-                className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${
-                  isClicked ? "cursor-not-allowed" : ""
-                }`}
+                className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${isClicked ? "cursor-not-allowed" : ""
+                  }`}
               >
                 {isClicked ? "Creating..." : "Create Blog"}
               </button>

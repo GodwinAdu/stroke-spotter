@@ -1,7 +1,7 @@
 import AccountProfile from "@/components/account/AccountProfile";
 import Breadcrumb from "@/components/common/Breadcrumbs";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 // Copy paste most of the code as it is from the /onboarding

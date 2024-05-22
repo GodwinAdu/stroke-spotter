@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <> 
       <Hero />
-      <YearTheme year="2023" theme="Together we are #GreaterThan Stroke" />
+      <YearTheme year="2024" theme="A time to unite globally in the fight against stroke" />
       <ContentLinks />
       <StrokeInfoSection />
       <StrokeAwarenessSection />

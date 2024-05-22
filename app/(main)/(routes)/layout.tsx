@@ -7,15 +7,20 @@ import MembershipBanner from "@/components/common/MembershipBanner";
 import FeedbackModal from "@/components/feedback/FeedbackModal";
 import RenderNavbar from "@/components/header/RenderNavbar";
 import Loader from "@/components/loader/Loader";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Spot Stroke Fast",
+  description: "Created by Jutech Devs",
+};
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body >
+    <main>
+      <div >
         <ScrollUp />
         <RenderNavbar />
         {children}
@@ -24,7 +29,7 @@ export default function RootLayout({
         <FeedbackModal />
         <Footer />
         <ScrollToTop />
-      </body>
-    </html>
+      </div>
+    </main>
   );
 }

@@ -2,7 +2,7 @@
 // Above resource shows how to setup uploadthing. Copy paste most of it as it is.
 // We're changing a few things in the middleware and configs of the file upload i.e., "media", "maxFileCount"
 
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const f = createUploadthing();
@@ -15,7 +15,7 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async (req) => {
       // This code runs on your server before upload
-      const user = true
+      const user = await currentUser()
 
       // If you throw, the user will not be able to upload
       if (!user) throw new Error("Unauthorized");

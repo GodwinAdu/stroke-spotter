@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 
 export default function MyComponent() {
-  const { value, handleChange, CreateBlogLink, modules } = useReactQuill( handleSubmit as (blogContent: string) => void );
+  const { value, handleChange, modules } = useReactQuill( );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
    // Define your custom handleSubmit function
@@ -22,9 +22,9 @@ export default function MyComponent() {
         value={value}
         onChange={handleChange}
       />
-      <div>
+      {/* <div>
         <CreateBlogLink />
-      </div>
+      </div> */}
     </>
   );
 }
