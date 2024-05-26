@@ -19,7 +19,7 @@ const Page = async () => {
         username: userInfo ? userInfo?.username : user.username,
         name: userInfo ? userInfo?.name : `${user?.firstName} ${user?.lastName}` ?? "",
         email:userInfo ? userInfo?.email : user.emailAddresses[0].emailAddress ?? "",
-        phone:userInfo ? userInfo?.phone : user.phoneNumbers[0].phoneNumber ?? "",
+        // phone:userInfo ? userInfo?.phone : user.phoneNumbers[0].phoneNumber ?? "",
         country: userInfo ? userInfo.country : "",
         profession: userInfo ? userInfo.profession : "",
         gender: userInfo ?  userInfo.gender : "",

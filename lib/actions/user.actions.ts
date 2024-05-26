@@ -27,7 +27,7 @@ interface Params {
   username: string;
   name: string;
   email: string,
-  phone: string,
+  // phone: string,
   gender: string;
   country: string;
   profession: string;
@@ -43,7 +43,7 @@ export async function updateUser({
   path,
   username,
   email,
-  phone,
+  // phone,
   gender,
   country,
   profession,
@@ -61,7 +61,7 @@ export async function updateUser({
         bio,
         image,
         email,
-        phone,
+        // phone,
         sex: gender,
         profession,
         memberId: uniqueId,

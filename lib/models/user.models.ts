@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
       profession:String,
       country:String,
       sex:String,
-      phone: String,
+      // phone: String,
       memberId: String,
       onboarded: {
         type: Boolean,
@@ -50,7 +50,6 @@ const UserSchema = new mongoose.Schema({
         type:Boolean,
         default: false
     },
-   
     memberType: {
         type: String,
         enum: ['gold', 'silver', 'bronze', 'basic'], // example membership types, modify as needed

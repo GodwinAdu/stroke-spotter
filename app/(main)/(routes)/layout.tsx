@@ -1,5 +1,5 @@
 
-import "./globals.css";
+
 import Footer from "@/components/footer/Footer";
 import ScrollUp from "@/components/common/ScrollUp";
 import ScrollToTop from "@/components/common/ScrollToTop";

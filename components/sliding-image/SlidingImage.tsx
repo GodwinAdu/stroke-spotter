@@ -13,7 +13,7 @@ function SlidingImage() {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, [images]);
@@ -38,9 +38,9 @@ function SlidingImage() {
           <Image fill src={image.src} alt={`Slide ${index}`} objectFit="cover" />
 
           {/* Name and Duty in the center */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-4/1 text-black">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-4/2 rounded-lg text-white/90 p-5 bg-black border-1 shadow-2xl">
             <h3 className="font-bold text-xl">{image.name}</h3>
-            <p>{image.duty}</p>
+            <p className="text-sm italic">{image.duty}</p>
           </div>
         </div>
       ))}

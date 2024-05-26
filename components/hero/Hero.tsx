@@ -27,24 +27,23 @@ export default function Hero() {
                 data-aos="zoom-y-out"
                 data-aos-delay="150"
               >
-                The best way to help prevent a stroke is to eat a healthy diet,
-                exercise regularly, and avoid smoking and drinking too much
-                alcohol. If you have already had a stroke, making these changes
-                can help reduce your risk of having another one in the future.
+                In the battle against stroke, for every three individuals struck,
+                 one tragically dies, one is left permanently disabled,and only one,
+                  fully recovers -- highlighting the urgent need for awareness and swift action...
               </p>
               <div
                 className="max-w-xs mx-auto sm:max-w-none gap-3 sm:flex sm:justify-center"
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >
-                <div className="pb-8">
+                {/* <div className="pb-8">
                   <Link
                     className="btn text-white bg-indigo/50 dark:bg-primary dark:text-dark py-3 px-4 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
                     href="/about-us"
                   >
                     Donate Now
                   </Link>
-                </div>
+                </div> */}
                 <div className="">
                   <SignedOut>
                     <SignInButton>
@@ -62,7 +61,7 @@ export default function Hero() {
             thumbWidth={768}
             thumbHeight={432}
             thumbAlt="Modal video thumbnail"
-            video="/videos/video.mp4"
+            video="/hero-video.mp4"
             videoWidth={1920}
             videoHeight={1080}
           />
