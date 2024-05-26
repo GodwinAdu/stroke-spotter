@@ -8,12 +8,17 @@ import { useForm } from 'react-hook-form'
 import TextareaAutosize from 'react-textarea-autosize'
 import { z } from 'zod'
 
-import { toast } from '@/hooks/use-toast'
-import { PostCreationRequest, PostValidator } from '@/lib/validators/post'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import '@/styles/editor.css'
 import { uploadFiles } from '@/lib/uploadthing2'
+import { toast } from '../ui/use-toast'
+
+const PostValidator = z.object({
+    title: z.string().nonempty().min(3, { message: 'Minimum 3 characters' }),
+    content: z.string(),
+    subredditId: z.string().nonempty().min(3, { message: 'Minimum 3 characters' }),
+    image: z.string().nonempty().min(3, { message: 'Minimum 3 characters' }),
+    tags: z.string().nonempty().min(3, { message: 'Minimum 3 characters' }),
+});
 
 type FormData = z.infer<typeof PostValidator>
 
@@ -167,13 +172,13 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     async function onSubmit(data: FormData) {
         const blocks = await ref.current?.save()
 
-        const payload: PostCreationRequest = {
+        const payload: any = {
             title: data.title,
             content: blocks,
             subredditId,
         }
 
-        createPost(payload)
+        // createPost(payload)
     }
 
     if (!isMounted) {
