@@ -8,7 +8,7 @@ export default function MyComponent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
    // Define your custom handleSubmit function
-   function handleSubmit(blogContent:str) {
+   function handleSubmit(blogContent:any) {
     // Perform the logic to save the blog content to your database or take any other action
     console.log('Blog content:', blogContent);
     // Replace the above console.log with your actual logic
