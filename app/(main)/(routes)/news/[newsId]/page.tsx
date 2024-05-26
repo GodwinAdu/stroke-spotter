@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { MessageSquare, Share2, ThumbsUp } from "lucide-react";
 import { Suspense } from "react";
-import "react-quill/dist/quill.snow.css";
 import TagButton from "@/components/blog/TagButton";
 import SharePost from "@/components/blog/SharePost";
 import { fetchSingleNews } from "@/lib/actions/news.actions";

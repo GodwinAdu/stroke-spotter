@@ -5,7 +5,6 @@ import { Separator } from "@/components/ui/separator";
 import { MessageSquare, Share2, ThumbsUp } from "lucide-react";
 import Timeperiod from "./TimePeriod";
 import { Suspense } from "react";
-import "react-quill/dist/quill.snow.css";
 import TagButton from "@/components/blog/TagButton";
 import SharePost from "@/components/blog/SharePost";
 import { formatDate } from "@/lib/utils";
