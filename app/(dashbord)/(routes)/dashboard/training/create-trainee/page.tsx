@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { useReactQuill } from "@/hooks/useReactQuill"; // Replace with the correct path
+
 import { usePathname, useRouter } from "next/navigation";
 import lzString from "lz-string";
 
@@ -19,7 +17,6 @@ const CreateTraining = () => {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const { value, handleChange, modules } = useReactQuill();
   const [showEditor, setShowEditor] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -87,24 +84,7 @@ const CreateTraining = () => {
   };
 
   const handleCreateBlog = async () => {
-    console.log("first clicked")
-    // if(!value) return;
-    const compressedTrainingContent = lzString.compressToEncodedURIComponent(value);
-    console.log("lzstring")
-
-    const trainingContent = {
-      ...formData,
-      content: compressedTrainingContent,
-    };
-console.log("traingcontent")
-    await createTrainPost(trainingContent, path);
-    // You can now access all form data without selectedImage
-    console.log("after create function")
-    resetFormData();
-    setIsClicked(false);
-    router.back();
-
-    // Redirect to the next page or perform any other actions
+    
   };
 
   return (
@@ -162,14 +142,14 @@ console.log("traingcontent")
           </form>
         ) : (
           <>
-            <ReactQuill
+            {/* <ReactQuill
               theme="snow"
               modules={modules}
               value={value}
               onChange={handleChange}
               className="border border-gray-300 rounded mb-4"
               style={{ height: "90%" }}
-            />
+            /> */}
             <div className="flex justify-between">
               <button
                 type="button"

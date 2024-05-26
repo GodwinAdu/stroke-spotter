@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { useReactQuill } from "@/hooks/useReactQuill"; // Replace with the correct path
+
 import { usePathname, useRouter } from "next/navigation";
 import lzString from "lz-string";
 import Breadcrumb from "@/components/common/Breadcrumbs";
@@ -17,7 +15,6 @@ const CreateNewsletters = () => {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const { value, handleChange, modules } = useReactQuill();
   const [showEditor, setShowEditor] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -85,22 +82,7 @@ const CreateNewsletters = () => {
   };
 
   const handleCreateBlog = async () => {
-    if(!value) return;
-    setIsClicked(true)
-    const compressedBlogContent = lzString.compressToEncodedURIComponent(value);
-
-    const newsContent = {
-      ...formData,
-      content: compressedBlogContent,
-    };
-
-    await createNewsletter(newsContent, path);
-    // You can now access all form data without selectedImage
-    resetFormData();
-    setIsClicked(false);
-    router.back();
-
-    // Redirect to the next page or perform any other actions
+   
   };
 
   return (
@@ -158,14 +140,14 @@ const CreateNewsletters = () => {
           </form>
         ) : (
           <>
-            <ReactQuill
+            {/* <ReactQuill
               theme="snow"
               modules={modules}
               value={value}
               onChange={handleChange}
               className="border border-gray-300 rounded mb-4"
               style={{ height: "90%" }}
-            />
+            /> */}
             <div className="flex justify-between">
               <button
                 type="button"

@@ -1,10 +1,10 @@
 "use client";
-import { useReactQuill } from "@/hooks/useReactQuill";
+
 import { useState } from "react";
-import ReactQuill from "react-quill";
+
 
 export default function MyComponent() {
-  const { value, handleChange, modules } = useReactQuill( );
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
    // Define your custom handleSubmit function
@@ -16,12 +16,12 @@ export default function MyComponent() {
 
   return (
     <>
-      <ReactQuill
+      {/* <ReactQuill
         theme="snow"
         modules={modules}
         value={value}
         onChange={handleChange}
-      />
+      /> */}
       {/* <div>
         <CreateBlogLink />
       </div> */}
