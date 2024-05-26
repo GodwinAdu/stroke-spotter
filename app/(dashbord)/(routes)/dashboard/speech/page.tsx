@@ -5,8 +5,6 @@ import { fetchSpeech } from "@/lib/actions/speech.actions";
 import SpeechCard from "@/components/speech/SpeechCard";
 
 
-// unsave browser cache
-export const dynamic = 'force-dynamic';
 
 const SpeechPage = async ({
   searchParams,

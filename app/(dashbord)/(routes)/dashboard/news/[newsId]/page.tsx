@@ -2,10 +2,7 @@ import Breadcrumb from "@/components/dashboard/Breadcrumbs/Breadcrumb";
 import Link from "next/link";
 import * as cheerio from 'cheerio';
 import { fetchSingleNews } from "@/lib/actions/news.actions";
-;
 
-
-export const dynamic ='force-dynamic'
 
 const NewsDetails = async ({ params }: { params: { newsId: string } }) => {
 

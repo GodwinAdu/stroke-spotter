@@ -4,9 +4,6 @@ import Link from "next/link";
 import * as cheerio from 'cheerio';
 ;
 
-
-export const dynamic ='force-dynamic'
-
 const BlogDetails = async ({ params }: { params: { blogId: string } }) => {
 
   const blog = await fetchSingleBlog(params.blogId);

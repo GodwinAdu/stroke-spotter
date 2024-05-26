@@ -7,7 +7,6 @@ import { fetchApprovedNews } from "@/lib/actions/news.actions";
 
 import { formatDate } from "@/lib/utils";
 
-export const dynamic = 'force-dynamic'
 
 interface newsProps{
   serializeNews:any[];

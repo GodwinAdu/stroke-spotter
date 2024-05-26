@@ -4,7 +4,6 @@ import { fetchEvent } from "@/lib/actions/event.actions";
 
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic'
 
 const EventPage = async () => {
 

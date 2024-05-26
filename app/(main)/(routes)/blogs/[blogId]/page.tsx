@@ -12,7 +12,6 @@ import { formatDate } from "@/lib/utils";
 import NewsLetterBox from "@/components/contact/NewsLetter";
 import RelatedPost from "@/components/blog/RelatedPost";
 
-export const dynamic = "force-dynamic";
 
 const BlogDetails = async ({ params }: { params: { blogId: string } }) => {
   const blog = await fetchSingleBlog(params.blogId);

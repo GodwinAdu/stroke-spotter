@@ -10,8 +10,6 @@ import SharePost from "@/components/blog/SharePost";
 import { fetchSingleNews } from "@/lib/actions/news.actions";
 import Timeperiod from "../../blogs/[blogId]/TimePeriod";
 
-export const dynamic = "force-dynamic";
-
 const NewsDetails = async ({ params }: { params: { newsId: string } }) => {
   const news = await fetchSingleNews(params.newsId);
 

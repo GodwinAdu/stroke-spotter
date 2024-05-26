@@ -4,8 +4,6 @@ import Breadcrumb from "@/components/common/Breadcrumbs";
 import SingleEvent from "@/components/event/SingleEvent";
 import { fetchEvent } from "@/lib/actions/event.actions";
 
-export const dynamic = "force-dynamic";
-
 const EventsPage = async () => {
 
      

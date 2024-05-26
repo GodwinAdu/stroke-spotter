@@ -6,8 +6,6 @@ import Pagination from "@/components/common/Pagination";
 import SingleNewsletters from "@/components/newsletter/SingleNewsletters";
 import { fetchNewsletter } from "@/lib/actions/newsletter.actions";
 
-// unsave browser cache
-export const dynamic = 'force-dynamic';
 
 const NewsletterPage = async ({
   searchParams,

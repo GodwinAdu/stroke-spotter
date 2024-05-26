@@ -6,8 +6,6 @@ import Pagination from "@/components/common/Pagination";
 import { fetchResearch } from "@/lib/actions/research.actions";
 import ResearchCard from "@/components/research/ResearchCard";
 
-// unsave browser cache
-export const dynamic = 'force-dynamic';
 
 const ResearchPage = async ({
   searchParams,

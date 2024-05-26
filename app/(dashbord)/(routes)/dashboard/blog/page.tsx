@@ -4,8 +4,6 @@ import Link from "next/link";
 import Pagination from "@/components/common/Pagination";
 import SingleBlog from "@/components/blog/SingleBlog";
 
-// unsave browser cache
-export const dynamic = 'force-dynamic';
 
 const BlogPage = async ({
   searchParams,

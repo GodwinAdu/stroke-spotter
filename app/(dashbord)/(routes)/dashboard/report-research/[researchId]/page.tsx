@@ -1,11 +1,5 @@
 import Breadcrumb from "@/components/dashboard/Breadcrumbs/Breadcrumb";
 import {  fetchSingleBlog } from "@/lib/actions/blog.actions";
-import Link from "next/link";
-import * as cheerio from 'cheerio';
-;
-
-
-export const dynamic ='force-dynamic'
 
 const ResearchDetails = async ({ params }: { params: { researchId: string } }) => {
 

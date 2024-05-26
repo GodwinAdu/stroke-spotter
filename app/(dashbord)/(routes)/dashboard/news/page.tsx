@@ -5,9 +5,6 @@ import Pagination from "@/components/common/Pagination";
 import { fetchNews } from "@/lib/actions/news.actions";
 import SingleNews from "@/components/news/SingleNews";
 
-// unsave browser cache
-export const dynamic = 'force-dynamic';
-
 const NewsPage = async ({
   searchParams,
 }: {

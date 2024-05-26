@@ -6,9 +6,6 @@ import TrainingCard from "@/components/training/TrainingCard";
 import { fetchTrainPost } from "@/lib/actions/training.actions";
 
 
-// unsave browser cache
-export const dynamic = 'force-dynamic';
-
 const TraineePage = async ({
   searchParams,
 }: {

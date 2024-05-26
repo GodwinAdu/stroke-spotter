@@ -7,8 +7,6 @@ import Pagination from "@/components/common/Pagination";
 import { fetchApprovedBlog} from "@/lib/actions/blog.actions";
 
 
-export const dynamic = 'force-dynamic'
-
 interface blogProps{
   serializeBlogs:any[];
   isNext:boolean;
