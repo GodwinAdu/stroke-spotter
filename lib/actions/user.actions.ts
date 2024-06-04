@@ -10,9 +10,9 @@ import { generateMembershipId } from "../utils";
 
 
 export async function fetchUser(userId: string) {
-  console.log(userId,"userId")
-  try {                                                            
-    connectToDB();
+  try {
+    console.log(userId, "userId")
+    await connectToDB();
     const user = await User.findOne({ id: userId });
     if (!user) {
       return null
@@ -51,7 +51,7 @@ export async function updateUser({
 }: Params): Promise<void> {
   const uniqueId = await generateMembershipId()
   try {
-    connectToDB();
+    await connectToDB();
 
     await User.findOneAndUpdate(
       { id: userId },
@@ -82,8 +82,8 @@ export async function updateUser({
 
 
 export async function fetchUsers() {
-  await connectToDB();
   try {
+  await connectToDB();
 
     const users = await User.find({});
 
